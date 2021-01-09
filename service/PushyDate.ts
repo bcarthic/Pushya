@@ -13,6 +13,7 @@ export interface PushyaDate {
 
 const getDates = async (): Promise<PushyaDate[]> => {
   const currentYear = new Date().getFullYear().toString();
+  await DeviceStorage.setItem(DeviceStorage.PUSHYA_DATES, "");
   try {
     const getDatesFromServer = async () => {
       const response = await fetch(
@@ -22,7 +23,7 @@ const getDates = async (): Promise<PushyaDate[]> => {
       dates = JSON.parse(result) as PushyaDates;
       await DeviceStorage.setItem(DeviceStorage.PUSHYA_DATES, result);
 
-      return result[currentYear];
+      return dates[currentYear];
     };
 
     let dates = JSON.parse(
@@ -34,7 +35,7 @@ const getDates = async (): Promise<PushyaDate[]> => {
       return dates[currentYear];
     }
 
-    return getDatesFromServer();
+    return await getDatesFromServer();
   } catch (error) {
     console.error(error);
     return dates[2021];

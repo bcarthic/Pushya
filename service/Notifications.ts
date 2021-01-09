@@ -47,7 +47,7 @@ export const scheduleNotification = async (dateString: string) => {
 
 export const scheduleAllNotification = async (dates: string[]) => {
   const notifyState =
-    (await DeviceStorage.getItem(DeviceStorage.REMINDER_STATE)) === "";
+    (await DeviceStorage.getItem(DeviceStorage.REMINDER_STATE)) === null;
   if (notifyState) {
     await scheduleAllNotifications(dates);
   }

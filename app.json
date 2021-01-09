@@ -15,9 +15,13 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bcarthic.pushya",
+      "buildNumber": "1.0.0"
     },
     "android": {
+      "package": "com.bcarthic.pushya",
+      "versionCode": 1,
       "useNextNotificationsApi": true,
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo.png",
