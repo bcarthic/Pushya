@@ -34,19 +34,12 @@ const Home: React.FC<HomeProps> = ({}) => {
       const dates = await getFilteredDates();
       setList(dates);
       await scheduleAllNotification(dates.map((v) => v.start));
-    };
-
-    getDates();
-  }, []);
-
-  useEffect(() => {
-    const getNotificationState = async () => {
       const notifyState =
         (await DeviceStorage.getItem(DeviceStorage.REMINDER_STATE)) == "true";
       setNotifyEnabled(notifyState);
     };
 
-    getNotificationState();
+    getDates();
   }, []);
 
   useEffect(() => {
